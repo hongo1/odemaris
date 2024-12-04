@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despedida</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #757575, #1c1c1c);
+            color: #d9d9d9;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efecto de lluvia */
+        .lluvia {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .gota {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            width: 2px;
+            height: 15px;
+            animation: caer 2s infinite linear;
+        }
+
+        @keyframes caer {
+            0% {
+                top: -20px;
+                transform: translateX(0);
+            }
+            100% {
+                top: 100%;
+                transform: translateX(50px);
+            }
+        }
+
+        /* Mensaje central */
+        .mensaje {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: aparecer 1s ease-out forwards;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .mensaje h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #e0e0e0;
+        }
+
+        .mensaje p {
+            margin: 10px 0 20px;
+            font-size: 1.2em;
+            color: #b0b0b0;
+        }
+
+        .mensaje a {
+            color: #ff7675;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .mensaje a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo de lluvia -->
+    <div class="lluvia">
+        <!-- Gotas generadas dinámicamente -->
+    </div>
+
+    <!-- Mensaje central -->
+    <div class="mensaje">
+        <h1>Adiós...</h1>
+        <p>Tal vez no era el momento, o tal vez simplemente nunca lo fue. Gracias por los recuerdos y todo lo que compartimos juntos.</p>
+        <p>Te deseo lo mejor, siempre. ❤️</p>
+        <a href="index.html">Volver al inicio</a>
+    </div>
+
+    <!-- Script para generar lluvia -->
+    <script>
+        const lluvia = document.querySelector('.lluvia');
+
+        function crearGota() {
+            const gota = document.createElement('div');
+            gota.classList.add('gota');
+            gota.style.left = Math.random() * 100 + 'vw';
+            gota.style.animationDuration = Math.random() * 1 + 2 + 's';
+            lluvia.appendChild(gota);
+
+            setTimeout(() => {
+                gota.remove();
+            }, 3000);
+        }
+
+        setInterval(crearGota, 100);
+    </script>
+</body>
+</html>
