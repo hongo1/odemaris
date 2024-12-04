@@ -11,27 +11,36 @@
             font-family: 'Arial', sans-serif;
             background: url('fondo.jpeg') no-repeat center center fixed;
             background-size: cover;
-            overflow: hidden;
-            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .contenedor-cartas {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 20px;
-            margin-top: 50px;
+            margin: 20px auto;
+            width: 90%;
         }
 
-        /* Carta central */
+        @media (min-width: 600px) {
+            .contenedor-cartas {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        /* Carta */
         .carta {
             background: white;
-            width: 300px;
-            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
@@ -40,10 +49,10 @@
         }
 
         .carta:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        /* Modal para el mensaje */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -55,24 +64,28 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .modal .mensaje {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            width: 300px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* Botón de emergencia */
         .boton-emergencia {
             background: black;
             color: white;
-            padding: 15px 20px;
+            padding: 10px 15px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: bold;
             margin: 20px auto;
             display: block;
@@ -82,17 +95,23 @@
             background: darkred;
         }
 
-        /* Estilos de las nubes */
+        /* Nubes */
         .nube {
             position: absolute;
             background: url('nube.webp') no-repeat center;
             background-size: contain;
-            width: 100px;
-            height: 60px;
+            width: 80px;
+            height: 50px;
             animation: flotar 10s linear infinite;
         }
 
-        /* Animación de las nubes */
+        @media (min-width: 600px) {
+            .nube {
+                width: 100px;
+                height: 60px;
+            }
+        }
+
         @keyframes flotar {
             from {
                 transform: translateX(-150px);
@@ -104,67 +123,40 @@
     </style>
 </head>
 <body>
-    <!-- Nubes flotantes -->
     <div class="nube" style="top: 10%; animation-duration: 12s;"></div>
     <div class="nube" style="top: 30%; animation-duration: 15s;"></div>
     <div class="nube" style="top: 50%; animation-duration: 10s;"></div>
     <div class="nube" style="top: 70%; animation-duration: 20s;"></div>
 
-    <!-- Contenedor de cartas -->
     <div class="contenedor-cartas">
-        <!-- Carta central -->
         <div class="carta" onclick="mostrarMensaje('modal1')">
             <h3>10 razones</h3>
             <p>por las que te amo con todo mi ser ❤️</p>
         </div>
-
-        <!-- Segunda carta -->
         <div class="carta" onclick="mostrarMensaje('modal2')">
             <h2>10 razones para que seas mi novia</h2>
             <p>Leer cuidadosamente y con seriedad ❤️</p>
         </div>
     </div>
 
-    <!-- Modal con el mensaje de la primera carta -->
     <div class="modal" id="modal1">
         <div class="mensaje">
             <h2>Porque eres... ❤️</h2>
             <p>... el ser más hermoso de este mundo.</p>
-            <p>... la primera persona que me hace sentir querido.</p>
-            <p>... lo primero que pienso al despertar y lo último que pienso antes de dormir.</p>
-            <p>... la persona con los ojos más lindos del mundo.</p>
-            <p>... la única persona en el mundo a la que cualquier color de pelo se le ve hermoso.</p>
-            <p>... la persona que hace que se detenga el tiempo cuando estamos juntos.</p>
-            <p>... la única persona que me ha apoyado incondicionalmente.</p>
-            <p>... la primera persona que esperaré toda mi vida.</p>
-            <p>... la perfección hecha en persona.</p>
-            <p>... la única persona que quiero amar durante toda mi vida.</p>
             <button onclick="cerrarMensaje('modal1')">Cerrar</button>
         </div>
     </div>
 
-    <!-- Modal con el mensaje de la segunda carta -->
     <div class="modal" id="modal2">
         <div class="mensaje">
             <h2>❤️</h2>
             <p>Porque sí.</p>
-            <p>Porque no.</p>
-            <p>Por favor.</p>
-            <p>Porque sería el niño más feliz del mundo.</p>
-            <p>Porque sé que en el fondo también lo has pensado.</p>
-            <p>Porque sé que en el fondo sientes cositas por mí.</p>
-            <p>Porque me mato si no.</p>
-            <p>Porque me haces feliz.</p>
-            <p>Porque te amo.</p>
-            <p>Porque sí otra vez.</p>
             <button onclick="cerrarMensaje('modal2')">Cerrar</button>
         </div>
     </div>
 
-    <!-- Botón de emergencia -->
     <button class="boton-emergencia" onclick="mostrarEmergencia()">Presionar en caso de emergencia</button>
 
-    <!-- Script para funcionalidades -->
     <script>
         function mostrarMensaje(idModal) {
             document.getElementById(idModal).style.display = 'flex';
