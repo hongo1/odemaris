@@ -71,19 +71,19 @@
             background-color: #0056b3;
         }
 
+        /* Botones en las esquinas superiores */
         .side-buttons {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 10px; /* Posiciona los botones en la parte superior */
             z-index: 10;
         }
 
         .side-buttons.left {
-            left: 20px;
+            left: 20px; /* Esquina superior izquierda */
         }
 
         .side-buttons.right {
-            right: 20px;
+            right: 20px; /* Esquina superior derecha */
         }
 
         .side-buttons button {
@@ -143,7 +143,7 @@
     </style>
 </head>
 <body>
-    <!-- Botones laterales -->
+    <!-- Botones en las esquinas superiores -->
     <div class="side-buttons left">
         <button onclick="window.location.href='carta.html'">📩 Carta</button>
     </div>
@@ -182,7 +182,7 @@
 
         function redirectWithPassword() {
             const password = prompt("Por favor, ingrese la contraseña:");
-            if (password === "1234") { // Cambia "1234" por la contraseña deseada
+            if (password === "1234") { // Cambia "18122023" por la contraseña deseada
                 window.location.href = "despedida.html";
             } else {
                 alert("Contraseña incorrecta.");
